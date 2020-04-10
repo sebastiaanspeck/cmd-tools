@@ -1,0 +1,9 @@
+#!/bin/sh
+
+output=$(find . -name '.#*' -print)
+
+if [ -n "$output" ]; then
+	echo "You have unsaved Emacs files:" 1>&2
+	echo "$output" 1>&2
+	exit 1
+fi
