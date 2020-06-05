@@ -1,0 +1,35 @@
+[alias]
+      	co  = checkout
+      	cob = checkout -b
+      	ec  = config --global -e
+      	cm  = !git commit -m
+      	cam = !git add -A && git commit -m
+      	up  = !git pull --rebase --prune $@
+      	pb  = !git publish
+      	rb  = !git rollback
+      	rf  = !git rollback-file
+	ups = !git stash-staged
+	us  = !git unstage
+ 
+      	pushd           = push -u origin HEAD
+      	amend           = !git add -A && git commit --amend --no-edit
+      	publish         = !git up && git push
+      	full-pull       = !git fetch && git up
+      	up-stash        = !git stash && git up && git stash pop
+      	last            = log -1 HEAD
+      	unstage         = restore --staged
+      	rollback-file   = checkout --
+      	rollback        = checkout -f
+      	clean-up        = !git clean -nx
+      	clean-upf       = !git clean -fx
+ 
+      	rebase-continue = rebase --continue
+      	clean-up-magik  = !git clean -nx -e '*.magikc' -e '*.msgc' -e '*.CMD' -e '*.msf'
+      	clean-upf-magik = !git clean -fx -e '*.magikc' -e '*.msgc' -e '*.CMD' -e '*.msf'
+ 
+      	bclean  = "!f() { git branch -vv | grep -v 'origin/.*' | awk '{print $1}' | xargs git branch -D; }; f"
+      	bgone   = "!f() { git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -D; }; f"
+      	bupdate = "!f() { git branch -vv | grep 'origin/.* behind .*' | awk '{print $1}' | xargs git checkout && git pull; }; f"
+ 
+      	cga = "!f() { git config --global -l  | grep 'alias*'; }; f"
+	stash-staged = "!bash -c \"git stash --keep-index; git stash push -m \"staged\" --keep-index; git stash pop stash@{1}\""
